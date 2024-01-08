@@ -17,7 +17,7 @@ function dropMenu() {
             dropdownMenu.append("option").text(name).property("value", name);
         });
 
-        // Initial plot with the first sample
+        // Initial plots with the first sample
         let firstSample = names[0];
         barChart(firstSample, data);
         bubbleChart(firstSample, data);
@@ -45,7 +45,7 @@ function barChart(sample, data) {
         type: "bar",
         orientation: 'h'
     };
-
+    // Create the layout for the bar chart
     let barLayout = {
         title: `Top 10 OTUs for Sample ${sample}`,
         xaxis: { title: "Sample Values" },
@@ -54,7 +54,7 @@ function barChart(sample, data) {
 
     Plotly.newPlot("bar", [trace], barLayout);
 }
-
+// Function to populate the bubble chart
 function bubbleChart(sample) {
     d3.json(url).then((data) => {
         let samples = data.samples;
@@ -76,7 +76,7 @@ function bubbleChart(sample) {
                 colorscale: "Earth"
             }
         }];
-
+        // Create the layout for the bubble chart
         let bubbleLayout = {
             title: 'Bacteria Cultures Per Sample',
             xaxis: { title: "OTU ID" },
@@ -86,7 +86,7 @@ function bubbleChart(sample) {
         Plotly.newPlot("bubble", bubbleData, bubbleLayout);
     });
 }
-
+// Function to display the sample metadata
 function metaData(sample) {
     d3.json(url).then((data) => {
         let metadata = data.metadata;
@@ -105,7 +105,7 @@ function metaData(sample) {
         });
     });
 }
-
+// Function to populate the gaugechart
 function gaugeChart(sample) {
     d3.json(url).then((data) => {
         let metadata = data.metadata;
@@ -117,7 +117,7 @@ function gaugeChart(sample) {
         // Gauge Chart
         let gaugeData = [
             {
-                domain: { x: [0, 1], y: [0,1]},
+                domain: { x: [0, 1], y: [0, 1]},
                 type: "indicator",
                 mode: "gauge+number",
                 value: wfreq,
@@ -145,7 +145,7 @@ function gaugeChart(sample) {
                 }
             }
         ];
-
+         // Create the layout for the gauge chart
         let gaugeLayout = {
             width: 500,
             height: 400,
